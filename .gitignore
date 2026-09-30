@@ -1,0 +1,14 @@
+.DS_Store
+.env
+/node_modules/
+
+# React Router
+/.react-router/
+/build/
+
+# Simülatörden alınan ham PNG'ler (WebP çıktıları public/screens altında)
+/assets/screens-raw/
+
+# Deploy araçları
+.vercel
+.wrangler
