@@ -14,9 +14,7 @@ pnpm preview      # build çıktısını statik sunucuyla açar (http://localhos
 pnpm typecheck
 ```
 
-**Node sürümü:** React Router 8, Node 22.22 veya üstünü ister. `.npmrc` içindeki `use-node-version`
-sayesinde pnpm script'leri makinedeki Node sürümünden bağımsız olarak Node 24 ile çalışır; global
-kurulumu değiştirmeniz gerekmez.
+**Node sürümü:** React Router 8, Node 22.22 veya üstünü ister. Proje Node 24 kullanır (`package.json` `engines` ve `.nvmrc`); Vercel ve Cloudflare bu sürümü otomatik seçer. Yerelde `nvm use` ya da Node 24 kurulumu gerekir.
 
 ## Nerede ne var?
 
