@@ -7,7 +7,7 @@ import { cn } from "~/lib/cn";
 export const faqs = [
   {
     q: "Klinara hangi klinikler için uygun?",
-    a: "Diş klinikleri, tıp estetiği klinikleri ve seans bazlı çalışan merkezler için tasarlandı. Tek hekimli muayenehaneden çok şubeli gruplara kadar aynı sistem kullanılır.",
+    a: "Öncelikle diş klinikleri için; tıp estetiği, fizyoterapi ve seans bazlı çalışan diğer sağlık klinikleri için de tasarlandı. Tek hekimli muayenehaneden çok şubeli gruplara kadar aynı sistem kullanılır.",
   },
   {
     q: "WhatsApp hatırlatmaları nasıl çalışıyor?",

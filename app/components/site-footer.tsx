@@ -10,7 +10,7 @@ export function SiteFooter() {
         <div className="max-w-sm">
           <Logo />
           <p className="mt-4 text-[15px] text-muted">
-            Diş ve estetik klinikleri için randevu ve klinik yönetimi. Web, iOS ve Android.
+            Diş ve sağlık klinikleri için randevu ve klinik yönetimi. Web, iOS ve Android.
           </p>
         </div>
 

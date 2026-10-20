@@ -163,7 +163,7 @@ export function Pricing() {
           ))}
         </div>
         <p className="mt-8 text-[15px] text-muted">
-          Üçten fazla şubeniz ya da daha büyük bir ekibiniz varsa size özel fiyat için yazın:{" "}
+          İkiden fazla şubeniz ya da daha büyük bir ekibiniz varsa size özel fiyat için yazın:{" "}
           <a href={`mailto:${site.contactEmail}`} className="font-medium text-accent underline underline-offset-4">
             {site.contactEmail}
           </a>

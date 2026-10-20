@@ -6,7 +6,7 @@
  *   title:       Başlık (zorunlu)
  *   description: Özet, arama sonucu ve kart metni (zorunlu)
  *   date:        YYYY-MM-DD (zorunlu)
- *   segment:     dis | estetik | guzellik (zorunlu)
+ *   segment:     dis | estetik | guzellik | fizyoterapi (zorunlu)
  *   cover:       /photos/... görseli ya da screen:<ekran-adı> (zorunlu)
  *   author:      İsteğe bağlı, varsayılan "Klinara Ekibi"
  */

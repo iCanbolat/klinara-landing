@@ -4,6 +4,7 @@ export const SEGMENTS = {
   dis: "Diş klinikleri",
   estetik: "Estetik klinikler",
   guzellik: "Güzellik merkezleri",
+  fizyoterapi: "Fizyoterapi merkezleri",
 } as const;
 
 export type Segment = keyof typeof SEGMENTS;

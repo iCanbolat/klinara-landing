@@ -22,9 +22,9 @@ const chapters: Chapter[] = [
     points: ["Geldi, gelmedi, ertele", "Hatırlatma geçmişi", "Değişiklik kaydı"],
   },
   {
-    screen: "booking-slots",
+    screen: "online-booking",
     title: "Boş saati sistem bulur",
-    body: "Hizmeti seçtiğinizde çalışma saatleri, molalar ve dolu randevular düşülür; yalnız uygun saatler listelenir.",
+    body: "Hasta online randevu sayfanızda hizmeti seçtiğinde çalışma saatleri, molalar ve dolu randevular düşülür; yalnız uygun saatler listelenir.",
     points: ["Hazırlık ve temizlik payı", "Çoklu hizmet sırası", "Sonraki boş gün önerisi"],
   },
   {
@@ -92,7 +92,7 @@ export function FeatureStory() {
             Klinik gününüz, cebinizde.
           </h2>
           <p className="mt-5 max-w-[56ch] text-lg text-muted">
-            Aşağıdaki ekranlar Klinara iOS uygulamasından. Aynı veriler Android uygulamasında ve web panelinde de var.
+            Aşağıdaki ekranlar Klinara iOS uygulamasından ve hastanın gördüğü online randevu sayfasından. Aynı veriler Android uygulamasında ve web panelinde de var.
           </p>
         </div>
 

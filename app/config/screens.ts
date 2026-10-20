@@ -10,6 +10,8 @@ export const screens = {
   appointment: "Randevu detayı: saat, hizmet, tutar ve planlandı, onaylandı, geldi adımlarıyla durum takibi",
   "appointment-reminders": "Randevu detayında gönderilen WhatsApp hatırlatmaları ve randevu geçmişi",
   "booking-slots": "Yeni randevu ekranında seçilen hizmete göre boş saatler",
+  /** Web'deki online randevu sayfası (apps/web-booking), mobil görünüm. Kiracı temalı; koyu sürümü yok, iki klasörde aynı görüntü. */
+  "online-booking": "Kliniğin online randevu sayfasında seçilen hizmete göre boş saatler",
   customers: "Danışan listesi, etiketler ve arama",
   customer: "Danışan kartında randevu, işlem notu ve paket zaman çizelgesi",
   package: "Seans paketi detayı: kalan hak, geçerlilik ve kalem bazında kullanım",

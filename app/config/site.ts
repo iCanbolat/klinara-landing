@@ -10,7 +10,7 @@ export const site = {
   /** Mevcut müşterilerin "Giriş" linki (yönetim paneli). */
   adminUrl: "https://yonetim.klinara.app",
   description:
-    "Diş ve estetik klinikleri için randevu, WhatsApp hatırlatma, KVKK onamı ve seans paketi takibi. Web, iOS ve Android.",
+    "Diş ve sağlık klinikleri için randevu, WhatsApp hatırlatma, KVKK onamı ve seans paketi takibi. Web, iOS ve Android.",
 } as const;
 
 /** Demo talebi için hazır konu ve gövdeli mailto linki. */

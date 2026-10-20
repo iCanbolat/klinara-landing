@@ -97,7 +97,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
       <aside className="mt-16 max-w-[68ch] rounded-card bg-sage-soft p-7 md:p-9">
         <p className="font-serif text-2xl font-semibold tracking-[-0.015em]">Bunları tek yerde yönetmek ister misiniz?</p>
         <p className="mt-3 text-muted">
-          Klinara takvimi, WhatsApp hatırlatmayı, KVKK onamını ve seans takibini diş ve estetik klinikleri için tek
+          Klinara takvimi, WhatsApp hatırlatmayı, KVKK onamını ve seans takibini diş ve sağlık klinikleri için tek
           sistemde toplar.
         </p>
         <div className="mt-6 flex flex-wrap items-center gap-4">

@@ -14,7 +14,7 @@ export async function loader() {
 export function meta(_: Route.MetaArgs) {
   return pageMeta({
     title: "Blog | Klinara",
-    description: "Diş klinikleri, estetik klinikler ve güzellik merkezleri için randevu, iletişim, KVKK ve seans takibi üzerine pratik yazılar.",
+    description: "Diş klinikleri, estetik klinikler, fizyoterapi merkezleri ve güzellik merkezleri için randevu, iletişim, KVKK ve seans takibi üzerine pratik yazılar.",
     path: "/blog",
   });
 }
@@ -38,7 +38,7 @@ export default function BlogIndex({ loaderData }: Route.ComponentProps) {
           Klinik yönetimi üzerine yazılar
         </h1>
         <p className="animate-rise mt-5 max-w-[56ch] text-lg text-muted" style={{ "--i": 1 } as React.CSSProperties}>
-          Randevu, iletişim, KVKK ve seans takibi üzerine; diş klinikleri, estetik klinikler ve güzellik merkezleri için
+          Randevu, iletişim, KVKK ve seans takibi üzerine; diş klinikleri, estetik klinikler, fizyoterapi merkezleri ve güzellik merkezleri için
           pratik notlar.
         </p>
       </header>

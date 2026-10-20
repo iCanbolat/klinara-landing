@@ -28,7 +28,7 @@ export function Hero() {
             className="animate-rise mt-6 max-w-[46ch] text-lg leading-relaxed text-muted"
             style={{ "--i": 1 } as React.CSSProperties}
           >
-            Diş ve estetik klinikleri için takvim, WhatsApp hatırlatma, KVKK onamı ve seans takibi. Web, iOS ve
+            Diş ve sağlık klinikleri için takvim, WhatsApp hatırlatma, KVKK onamı ve seans takibi. Web, iOS ve
             Android'de.
           </p>
           <div className="animate-rise mt-9 flex flex-wrap gap-3" style={{ "--i": 2 } as React.CSSProperties}>

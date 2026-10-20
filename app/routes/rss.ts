@@ -25,7 +25,7 @@ export async function loader() {
     <title>${site.name} Blog</title>
     <link>${absoluteUrl("/blog")}</link>
     <atom:link href="${absoluteUrl("/rss.xml")}" rel="self" type="application/rss+xml" />
-    <description>Diş ve estetik klinikleri için klinik yönetimi yazıları.</description>
+    <description>Diş ve sağlık klinikleri için klinik yönetimi yazıları.</description>
     <language>tr</language>
 ${items}
   </channel>

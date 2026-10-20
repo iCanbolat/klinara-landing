@@ -20,7 +20,7 @@ export async function loader() {
 
 export function meta(_: Route.MetaArgs) {
   return pageMeta({
-    title: "Klinara: Diş ve estetik klinikleri için randevu ve klinik yönetimi",
+    title: "Klinara: Diş ve sağlık klinikleri için randevu ve klinik yönetimi",
     description: site.description,
     path: "/",
     jsonLd: [

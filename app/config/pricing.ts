@@ -34,8 +34,8 @@ export const plans: Plan[] = [
     id: "cok-subeli",
     name: "Çok Şubeli",
     monthly: 6490,
-    branches: 3,
-    practitioners: 25,
+    branches: 2,
+    practitioners: 15,
     summary: "Birden fazla şubeyi tek panelden yöneten gruplar için.",
   },
 ];
