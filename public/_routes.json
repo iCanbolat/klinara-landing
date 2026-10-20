@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "include": [
+    "/randevu",
+    "/randevu/*",
+    "/r/*",
+    "/api/*",
+    "/_next/*",
+    "/preview.frame",
+    "/preview.frame/*"
+  ],
+  "exclude": []
+}

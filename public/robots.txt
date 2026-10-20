@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /randevu
+Disallow: /r/
+Disallow: /api/
+Disallow: /preview.frame
 
 Sitemap: https://klinara.app/sitemap.xml

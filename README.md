@@ -80,30 +80,51 @@ Görüntüler iOS uygulamasının mock verisiyle simülatörden alınır; gerçe
 `pnpm brand` marka görsellerini (`public/brand`, favicon, `og.png`) `assets/brand/klinara-logo-source.png`
 kaynağından yeniden üretir.
 
-## Yayına alma
+## Yayına alma — Cloudflare Pages
 
-### Vercel
+`klinara.app` bu sitedir ve **Cloudflare Pages**'te yayınlanır. Kök alan adındaki
+randevu yolları ise monorepo'daki web-booking uygulamasına (VPS) aittir; onları
+`functions/[[path]].ts` aktarır.
 
-1. Repoyu Vercel'e bağlayın. `vercel.json` build komutunu (`pnpm build`) ve çıktı dizinini
-   (`build/client`) zaten tanımlar; framework ayarı "Other" olarak kalır.
-2. Alan adını (`klinara.app`) proje ayarlarından ekleyin.
+| Yol | Nereden |
+|---|---|
+| `/`, `/blog/*`, `/sitemap.xml`, `/rss.xml`, varlıklar | Pages (statik, `build/client`) |
+| `/randevu`, `/r/*`, `/api/*`, `/_next/*`, `/preview.frame` | Pages Function → `ORIGIN_URL` (VPS, web-booking) |
 
-### Cloudflare Pages
+Function'ın hangi yollarda çalışacağını `public/_routes.json` belirler; diğer istekler
+fonksiyonu hiç tetiklemez (ücretsiz plandaki günlük Function kotası yalnız randevu
+trafiğine harcanır). Uygulamaya bu yollarla çakışan bir rota eklemeyin.
 
-1. Pages projesi oluşturup repoyu bağlayın.
-2. Build komutu `pnpm build`, çıktı dizini `build/client`.
-3. Ortam değişkeni `NODE_VERSION=24` (ya da `.nvmrc` otomatik okunur).
+### Kurulum
+
+1. Cloudflare → *Workers & Pages → Create → Pages → Connect to Git* → bu repo.
+2. Build komutu `pnpm build`, çıktı dizini `build/client`, kök dizin boş.
+   `functions/` klasörü otomatik algılanır.
+3. *Settings → Variables and Secrets* (Production):
+   - `NODE_VERSION` = `24`
+   - `ORIGIN_URL` = `https://origin.klinara.app`
+   - `ORIGIN_SHARED_SECRET` = **Secret** olarak; VPS'teki Caddy'nin
+     `ORIGIN_SHARED_SECRET` değeriyle aynı (`openssl rand -hex 32`).
+4. *Custom domains* → `klinara.app` ve `www.klinara.app` ekleyin. Alan adı aynı
+   Cloudflare hesabındaysa DNS kayıtları otomatik oluşur (turuncu bulut).
+5. `www` → kök yönlendirmesi: *Rules → Redirect Rules* →
+   `www.klinara.app/*` → `https://klinara.app/${1}` (301).
+
+VPS tarafı (origin.klinara.app, Caddy, sır doğrulaması) monorepo'da
+`.claude/DEPLOY.md` Bölüm 11 ve 12'de.
+
+### Kontrol
+
+```bash
+curl -sI https://klinara.app | head -1                                  # 200, Pages
+curl -sI 'https://klinara.app/randevu?klinik=olmayan' | head -1         # 404, web-booking'den
+curl -s -o /dev/null -w '%{http_code}\n' https://origin.klinara.app/randevu   # 403 (sırsız)
+```
 
 `public/_headers` önbellek başlıklarını, `build/client/404.html` bulunamayan sayfaları karşılar.
 
-### Cloudflare Workers (statik varlıklar)
-
-```bash
-pnpm build
-npx wrangler deploy
-```
-
-`wrangler.jsonc` çıktı dizinini ve 404 davranışını tanımlar.
+> `vercel.json` ve `wrangler.jsonc` eski alternatiflerdir; kök alan adındaki randevu
+> yollarını aktarmazlar. Canlı yayın için kullanmayın.
 
 ## Canlıya çıkmadan önce
 
