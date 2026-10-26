@@ -7,6 +7,8 @@ export async function loader() {
   const urls = [
     { loc: absoluteUrl("/"), lastmod: latest },
     { loc: absoluteUrl("/blog"), lastmod: latest },
+    { loc: absoluteUrl("/gizlilik") },
+    { loc: absoluteUrl("/hesap-silme") },
     ...posts.map((post) => ({ loc: absoluteUrl(`/blog/${post.slug}`), lastmod: post.date })),
   ];
   const body = `<?xml version="1.0" encoding="UTF-8"?>

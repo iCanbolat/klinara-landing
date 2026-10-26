@@ -34,6 +34,12 @@ export function SiteFooter() {
           <a href="/rss.xml" className="w-fit text-ink hover:text-accent">
             Blog RSS
           </a>
+          <Link to="/gizlilik" className="w-fit text-ink hover:text-accent">
+            Gizlilik Politikası
+          </Link>
+          <Link to="/hesap-silme" className="w-fit text-ink hover:text-accent">
+            Hesap ve veri silme
+          </Link>
         </div>
       </div>
       <div className="border-t border-line">
