@@ -15,6 +15,7 @@ npm run audio            # public/audio/*.wav (müzik + efektler; dev ve render 
 npm run stills           # out/stills/: her sahnenin anahtar kareleri (kontrol için)
 npm run render           # out/: 1080×1350 MP4, 720×900 MP4, poster
 npm run publish:landing  # out/ → ../public/videos/ (poster WebP'ye çevrilir)
+npm run carousel [-- tedavi-plani]  # out/instagram/<set>/: Instagram carousel PNG + MP4
 ```
 
 ## Nerede ne var?
@@ -26,6 +27,7 @@ npm run publish:landing  # out/ → ../public/videos/ (poster WebP'ye çevrilir)
 | `src/data.ts` | Senaryo verisi: klinik, hasta, hekim, hizmet, tedavi planı aşamaları |
 | `src/theme.ts` | Marka renkleri ve fontlar (landing `app/app.css` ile aynı) |
 | `src/components/devices.tsx` | Telefon, tablet ve web paneli çerçeveleri |
+| `src/social/*` | Instagram içerikleri; aynı token ve sahnelerle. `npm run carousel` → `out/instagram/` |
 
 Kurallar: ekranda para (tutar/ciro) yok; randevu durumu Planlandı → Geldi → Tamamlandı, "Onaylandı" yalnız rozet.
 Süre değişirse `Root.tsx`'teki toplam kare sayısı, `scripts/generate-audio.mjs` (1209 kare) ve

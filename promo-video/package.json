@@ -38,7 +38,8 @@
     "render": "npm run audio && npm run render:mp4 && npm run render:mp4-720 && npm run poster",
     "build": "remotion bundle",
     "lint": "eslint src && tsc",
-    "publish:landing": "node scripts/publish.mjs"
+    "publish:landing": "node scripts/publish.mjs",
+    "carousel": "npm run audio && node scripts/carousel.mjs"
   },
   "allowScripts": {
     "esbuild": false

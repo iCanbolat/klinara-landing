@@ -335,3 +335,85 @@ export function BrowserFrame({
     </div>
   );
 }
+
+/** Android telefon: ince çerçeve, az yuvarlak köşe, ortada delik kamera. Ölçü `PhoneFrame` ile aynı imza. */
+export function AndroidFrame({
+  width,
+  style,
+  children,
+  statusBar = true,
+  screenColor = color.surface,
+}: {
+  width: number;
+  style?: CSSProperties;
+  children: ReactNode;
+  statusBar?: boolean;
+  screenColor?: string;
+}) {
+  const k = width / 440;
+  return (
+    <div
+      style={{
+        position: "absolute",
+        width,
+        height: width * 2.18,
+        borderRadius: 52 * k,
+        backgroundColor: color.bezel,
+        padding: 9 * k,
+        boxShadow: shadow.device,
+        ...style,
+      }}
+    >
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100%",
+          overflow: "hidden",
+          borderRadius: 44 * k,
+          backgroundColor: screenColor,
+        }}
+      >
+        {children}
+        {statusBar ? (
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              height: 52 * k,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: `0 ${30 * k}px`,
+              fontFamily: sans,
+              fontWeight: 600,
+              fontSize: 17 * k,
+              color: color.ink,
+            }}
+          >
+            <span>9:41</span>
+            <div
+              style={{
+                position: "absolute",
+                left: "50%",
+                top: 16 * k,
+                width: 22 * k,
+                height: 22 * k,
+                marginLeft: -11 * k,
+                borderRadius: 99,
+                backgroundColor: "#000",
+              }}
+            />
+            <span style={{ display: "flex", gap: 6 * k, alignItems: "center" }}>
+              <Wifi size={17 * k} strokeWidth={2.6} />
+              <Signal size={17 * k} strokeWidth={2.6} />
+              <BatteryFull size={22 * k} strokeWidth={2} />
+            </span>
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+}
