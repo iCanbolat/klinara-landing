@@ -28,10 +28,10 @@ const chapters: Chapter[] = [
     points: ["Hazırlık ve temizlik payı", "Çoklu hizmet sırası", "Sonraki boş gün önerisi"],
   },
   {
-    screen: "customer",
-    title: "Danışanın geçmişi tek kartta",
-    body: "Randevular, işlem notları, paketler, fotoğraf ve belgeler aynı zaman çizelgesinde. Etiketleri tüm ekip görür.",
-    points: ["İşlem ve serbest notlar", "Öncesi ve sonrası fotoğraflar", "Hassas cilt, VIP gibi etiketler"],
+    screen: "treatment-plan",
+    title: "Tedavi planı, aşama aşama",
+    body: "İmplant, kanal tedavisi ya da ortodonti gibi haftalara yayılan tedavileri aşamalara bölün. Randevu tamamlanınca sıradaki aşamanın tarihi önerilir; randevusu olmayan aşama gözden kaçmaz.",
+    points: ["Şablondan ya da hastaya özel plan", "Tüm aşamaları tek seferde planlama", "Hastaya WhatsApp ile aşama hatırlatması"],
   },
   {
     screen: "whatsapp-thread",
@@ -40,10 +40,10 @@ const chapters: Chapter[] = [
     points: ["Kendi işletme numaranızdan", "Okunmamış ve kapalı ayrımı", "Konuşmadan randevu yönetimi"],
   },
   {
-    screen: "report-revenue",
+    screen: "report-occupancy",
     title: "Kararları raporlar verir",
-    body: "Doluluk, ciro, uygulayıcı performansı, gelmeme ve geri dönüş oranları. Şube ve dönem bazında.",
-    points: ["Hizmet, paket ve şube kırılımı", "Gelmeme ve iptal oranı", "Web panelinden CSV çıktısı"],
+    body: "Doluluk, uygulayıcı performansı, gelmeme ve geri dönüş oranları. Şube ve dönem bazında.",
+    points: ["Uygulayıcı, şube ve gün kırılımı", "Gelmeme ve iptal oranı", "Web panelinden CSV çıktısı"],
   },
 ];
 

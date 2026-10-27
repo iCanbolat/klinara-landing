@@ -19,7 +19,7 @@ export const plans: Plan[] = [
     monthly: 1490,
     branches: 1,
     practitioners: 2,
-    summary: "Tek hekimli muayenehane ve küçük estetik stüdyoları için.",
+    summary: "Tek hekimli muayenehane ve küçük diş klinikleri için.",
   },
   {
     id: "klinik",
@@ -71,6 +71,7 @@ export const includedFeatures: { group: string; items: string[] }[] = [
     group: "Klinik",
     items: [
       "KVKK aydınlatma metni ve işlem onamı, tablet imza",
+      "Çok aşamalı tedavi planı",
       "Danışan kartı, notlar, fotoğraf ve belgeler",
       "Seans paketi ve kalan hak takibi",
     ],
@@ -78,7 +79,7 @@ export const includedFeatures: { group: string; items: string[] }[] = [
   {
     group: "Yönetim",
     items: [
-      "Doluluk, ciro, personel ve gelmeme raporları",
+      "Doluluk, personel performansı ve gelmeme raporları",
       "Sahip, şube yöneticisi, resepsiyon ve uygulayıcı rolleri",
       "iOS ve Android personel uygulaması",
     ],

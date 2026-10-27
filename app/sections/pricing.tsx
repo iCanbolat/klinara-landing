@@ -100,9 +100,12 @@ function PlanCard({ plan, billing }: { plan: Plan; billing: Billing }) {
           <Check className="size-4 shrink-0 text-accent" strokeWidth={2.25} aria-hidden />
           {plan.branches === 1 ? "1 şube" : `${plan.branches} şubeye kadar`}
         </li>
-        <li className="flex items-center gap-3">
-          <Check className="size-4 shrink-0 text-accent" strokeWidth={2.25} aria-hidden />
-          {plan.practitioners} hekim ve uygulayıcıya kadar
+        <li className="flex items-start gap-3">
+          <Check className="mt-1 size-4 shrink-0 text-accent" strokeWidth={2.25} aria-hidden />
+          <span>
+            {plan.practitioners} hekim ve uygulayıcıya kadar
+            <span className="block text-[13px] text-muted">Resepsiyon ve yönetici hesapları sayılmaz</span>
+          </span>
         </li>
         <li className="flex items-center gap-3">
           <Check className="size-4 shrink-0 text-accent" strokeWidth={2.25} aria-hidden />

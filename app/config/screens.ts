@@ -4,10 +4,10 @@
  * Ekranlardaki kişi ve rakamlar uygulamanın örnek verisidir.
  */
 export const screens = {
-  dashboard: "Klinara iOS uygulamasında günün randevuları, doluluk ve personel cirosunu gösteren genel bakış ekranı",
+  dashboard: "Klinara iOS uygulamasında günün randevuları, doluluk ve personel işlem sayısını gösteren genel bakış ekranı",
   "calendar-agenda": "Takvimde günün randevuları, uygulayıcı filtreleri ve randevu durumları",
   "calendar-day": "Takvimin gün ızgarası görünümü, uygulayıcılara göre randevu blokları",
-  appointment: "Randevu detayı: saat, hizmet, tutar ve planlandı, onaylandı, geldi adımlarıyla durum takibi",
+  appointment: "Randevu detayı: saat, hizmet ve planlandı, onaylandı, geldi adımlarıyla durum takibi",
   "appointment-reminders": "Randevu detayında gönderilen WhatsApp hatırlatmaları ve randevu geçmişi",
   "booking-slots": "Yeni randevu ekranında seçilen hizmete göre boş saatler",
   /** Web'deki online randevu sayfası (apps/web-booking), mobil görünüm. Kiracı temalı; koyu sürümü yok, iki klasörde aynı görüntü. */
@@ -15,11 +15,11 @@ export const screens = {
   customers: "Danışan listesi, etiketler ve arama",
   customer: "Danışan kartında randevu, işlem notu ve paket zaman çizelgesi",
   package: "Seans paketi detayı: kalan hak, geçerlilik ve kalem bazında kullanım",
+  "treatment-plan": "İmplant tedavi planı: tamamlanan aşamalar, randevusu olmayan sıradaki aşama, planla ve WhatsApp ile hatırlat",
   "whatsapp-thread": "WhatsApp konuşması: danışan mesajı ve otomatik randevu hatırlatması",
   "message-log": "Mesaj günlüğü: ulaşan, okunan ve gönderilemeyen bildirimler",
   "reminder-settings": "Şubeye özel hatırlatma saatleri ayarı",
   "report-occupancy": "Doluluk raporu, uygulayıcılara göre grafik",
-  "report-revenue": "Ciro raporu, hizmetlere göre grafik",
 } as const;
 
 export type ScreenName = keyof typeof screens;
