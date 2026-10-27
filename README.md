@@ -27,6 +27,8 @@ pnpm typecheck
 | `app/app.css` | Marka token'ları (açık/koyu), tip ölçeği, animasyon yardımcıları |
 | `content/blog/*.md` | Blog yazıları |
 | `public/screens/` | Uygulama ekran görüntüleri (WebP, açık ve koyu) |
+| `public/videos/` | Hero promo videosu (MP4 1080 ve 720) ve posteri; kaynağı `promo-video/` |
+| `promo-video/` | Remotion projesi: videonun sahneleri, müziği, render script'leri (ayrı `npm` projesi, build'e girmez) |
 | `public/photos/` | Fotoğraflar (Unsplash License; kaynaklar monorepo `booking-page/template/assets/README.md`) |
 
 Renkler ve fontlar Klinara iOS uygulamasının (`Assets.xcassets`) ve web panelinin token'larıyla aynıdır.
