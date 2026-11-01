@@ -5,7 +5,7 @@ import { fade } from "@remotion/transitions/fade";
 import { AbsoluteFill, interpolate, staticFile, useCurrentFrame } from "remotion";
 
 import { appear, progress } from "../../anim";
-import { AndroidFrame, PhoneFrame } from "../../components/devices";
+import { PhoneFrame } from "../../components/devices";
 import { Accent, Logo, SceneShell } from "../../components/scene";
 import { Badge, Button, Sfx, Tap } from "../../components/ui";
 import { clinic, patient, site } from "../../data";
@@ -20,9 +20,8 @@ const END = 120;
 const FADE = 12;
 export const TREATMENT_VIDEO_FRAMES = INTRO + MAIN + END - 2 * FADE;
 
-/** Ana sahnenin yerel kareleri. Android aynı değişikliği `SYNC` kare sonra gösterir (canlı eşitleme). */
+/** Ana sahnenin yerel kareleri. */
 const T = { tap: 50, complete: 56, due: 92, remindTap: 150, sent: 158, whatsapp: 172, reply: 228 } as const;
-const SYNC = 10;
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
@@ -58,7 +57,7 @@ function Intro() {
 }
 
 /** Telefondaki plan: `f` bu cihazın gördüğü kare (Android için gecikmeli). */
-function PlanScreen({ f, android }: { f: number; android?: boolean }) {
+function PlanScreen({ f, android, bare }: { f: number; android?: boolean; bare?: boolean }) {
   const completed = f >= T.complete;
   const due = f >= T.due;
   const flash = interpolate(f, [T.complete, T.complete + 6, T.complete + 34], [0, 1, 0], clamp);
@@ -67,7 +66,9 @@ function PlanScreen({ f, android }: { f: number; android?: boolean }) {
   return (
     <div style={{ position: "absolute", inset: 0, fontFamily: sans, color: color.ink }}>
       <div style={{ position: "absolute", top: 70, left: 24, right: 24 }}>
-        <div style={{ fontSize: 17, fontWeight: 600, color: color.sageDeep }}>{android ? "← Müşteri" : "‹ Müşteriler"}</div>
+        {bare ? null : (
+          <div style={{ fontSize: 17, fontWeight: 600, color: color.sageDeep }}>‹ Müşteriler</div>
+        )}
         <div style={{ marginTop: 6, fontFamily: serif, fontSize: 30, fontWeight: 600 }}>{patient.name}</div>
       </div>
       <div
@@ -122,21 +123,16 @@ function Main() {
           <Accent>plan ilerler.</Accent>
         </>
       }
-      subtitle="iPhone ve Android'de aynı plan, anında."
+      subtitle="Sıradaki tarih kendiliğinden hesaplanır."
       panelTop={430}
     >
-      <PhoneFrame width={450} style={{ left: 60, top: 480 }}>
-        <PlanScreen f={frame} />
+      <PhoneFrame width={440} style={{ position: "absolute", left: 320, top: 340 }}>
+        <PlanScreen f={frame} android />
       </PhoneFrame>
-      <AndroidFrame width={450} style={{ left: 570, top: 500 }}>
-        <PlanScreen f={frame - SYNC} android />
-      </AndroidFrame>
-      <PlatformTag platform="ios" style={{ left: 80, top: 440, scale: "0.8", transformOrigin: "left center" }} />
-      <PlatformTag platform="android" style={{ left: 590, top: 460, scale: "0.8", transformOrigin: "left center" }} />
 
-      <Tap x={330} y={905} at={T.tap} />
+      <Tap x={470} y={745} at={T.tap} />
       <Sfx name="tap" at={T.tap} />
-      <Tap x={800} y={1090} at={T.remindTap} />
+      <Tap x={555} y={914} at={T.remindTap} />
       <Sfx name="tap" at={T.remindTap} />
       <Sfx name="chime" at={T.whatsapp} volume={0.3} />
 
