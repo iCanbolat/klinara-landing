@@ -79,6 +79,19 @@ Görüntüler iOS uygulamasının mock verisiyle simülatörden alınır; gerçe
 4. `pnpm screens` ile WebP'leri üretin (`public/screens/`). Ham PNG'ler git'e girmez.
 5. `xcrun simctl status_bar booted clear` ile simülatörü eski haline getirin.
 
+**Online randevu görselleri** (Özellikler bölümündeki tarayıcı + telefon) simülatörden değil,
+canlı randevu sayfasından (`demo-klinik.klinara.app`, demo kiracı) çekilir:
+
+```bash
+pnpm capture:booking   # assets/screens-raw/web/booking.png + {light,dark}/online-booking.png
+pnpm screens
+```
+
+Masaüstü Türkçe (dil menüsü açık), telefon İngilizce. Saat seçimindeki tutma isteği tarayıcıda
+sahte yanıtla karşılanır; canlıya hiçbir yazma isteği gitmez. Adres çubuklarındaki alan adı
+(`randevu.kliniginiz.com`) temsilîdir: masaüstünde `app/components/browser.tsx`, telefonda script'teki
+`DOMAIN`. Yüklü Google Chrome gerekir.
+
 `pnpm brand` marka görsellerini (`public/brand`, favicon, `og.png`) `assets/brand/klinara-logo-source.png`
 kaynağından yeniden üretir.
 

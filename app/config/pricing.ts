@@ -56,6 +56,7 @@ export const includedFeatures: { group: string; items: string[] }[] = [
     items: [
       "Takvim, çakışma kontrolü ve durum takibi",
       "Kendi alan adınızla online randevu sayfası",
+      "Randevu sayfası Türkçe, İngilizce, Almanca ve Rusça",
       "Çalışma saatleri, izinler ve resmi tatiller",
     ],
   },

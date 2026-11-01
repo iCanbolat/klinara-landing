@@ -6,6 +6,8 @@
 export const clinic = {
   name: "Nişantaşı Diş Kliniği",
   branch: "Nişantaşı",
+  /** Online randevu sayfasının bağlı alan adı; landing görselleriyle aynı temsilî ad. */
+  domain: "randevu.kliniginiz.com",
 } as const;
 
 export const site = { domain: "klinara.app" } as const;
@@ -31,11 +33,18 @@ export const booking = {
   time: "14:00",
 } as const;
 
-export const services = [
-  { name: "Diş Taşı Temizliği", duration: "45 dk" },
-  { name: "Kanal Tedavisi", duration: "60 dk" },
-  { name: "Kompozit Dolgu", duration: "30 dk" },
-  { name: "Muayene ve Kontrol", duration: "30 dk" },
+/** Online randevu sayfasındaki hizmetler, kategorilere göre (web-booking'deki gibi). */
+export const serviceCategories = [
+  {
+    name: "GENEL DİŞ HEKİMLİĞİ",
+    services: [
+      { name: "Diş Taşı Temizliği", duration: "45 dk" },
+      { name: "Kanal Tedavisi", duration: "60 dk" },
+      { name: "Kompozit Dolgu", duration: "30 dk" },
+      { name: "Muayene ve Kontrol", duration: "30 dk" },
+    ],
+  },
+  { name: "ESTETİK DİŞ HEKİMLİĞİ", services: [{ name: "Diş Beyazlatma", duration: "60 dk" }] },
 ] as const;
 
 /** Demo "Kanal Tedavisi" tedavi planı şablonu (seed-demo-site.ts), kısaltılmış. */

@@ -12,7 +12,8 @@
     "preview": "sirv build/client --port 4173 --host",
     "typecheck": "react-router typegen && tsc",
     "brand": "node scripts/build-brand.mjs",
-    "screens": "node scripts/optimize-screens.mjs"
+    "screens": "node scripts/optimize-screens.mjs",
+    "capture:booking": "node scripts/capture-booking.mjs"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.3.0",
@@ -35,6 +36,7 @@
     "@types/react-dom": "^19.2.7",
     "gray-matter": "^4.0.3",
     "marked": "^18.0.14",
+    "playwright-core": "^1.64.1",
     "sharp": "^0.35.5",
     "sirv-cli": "^3.0.1",
     "tailwindcss": "^4.3.3",

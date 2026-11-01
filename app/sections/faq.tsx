@@ -19,7 +19,11 @@ export const faqs = [
   },
   {
     q: "Online randevu sayfası kendi alan adımızla çalışır mı?",
-    a: "Evet. Sayfanız kliniginiz.klinara.app adresinde hazır gelir. İsterseniz kendi alan adınızı bağlarsınız; HTTPS sertifikası otomatik kurulur.",
+    a: "Evet. Sayfanız kliniginiz.klinara.app adresinde hazır gelir. İsterseniz randevu.kliniginiz.com gibi kendi alan adınızı bağlarsınız: alan adı sağlayıcınızda tek bir CNAME kaydı açmanız yeterli, HTTPS sertifikası otomatik kurulur.",
+  },
+  {
+    q: "Randevu sayfası başka dillerde de yayınlanabilir mi?",
+    a: "Evet. Sayfa Türkçenin yanında İngilizce, Almanca ve Rusça açılabilir; hasta dili sayfanın üstünden seçer. Düğmeler ve adımlar hazır çevrili gelir. Hizmet adlarını, SSS'yi ve sayfa yazılarını web panelindeki Çeviriler ekranından siz çevirirsiniz; çevrilmemiş metin Türkçe görünür.",
   },
   {
     q: "Mobil uygulama var mı?",

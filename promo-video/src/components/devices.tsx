@@ -194,39 +194,9 @@ export function BrowserFrame({
         ...style,
       }}
     >
-      <div
-        style={{
-          height: 54,
-          flexShrink: 0,
-          display: "flex",
-          alignItems: "center",
-          gap: 10,
-          padding: "0 22px",
-          backgroundColor: color.fill,
-          borderBottom: `1px solid ${color.line}`,
-        }}
-      >
-        {["#E8746A", "#E9B949", "#7DBA6A"].map((c) => (
-          <span key={c} style={{ width: 14, height: 14, borderRadius: 99, backgroundColor: c, opacity: 0.85 }} />
-        ))}
-        <div
-          style={{
-            marginLeft: 22,
-            flex: 1,
-            maxWidth: 520,
-            height: 34,
-            borderRadius: 10,
-            backgroundColor: color.raised,
-            display: "flex",
-            alignItems: "center",
-            padding: "0 16px",
-            fontSize: 17,
-            color: color.muted,
-          }}
-        >
-          yonetim.klinara.app/{path}
-        </div>
-      </div>
+      <BrowserBar height={54} fieldStyle={{ marginLeft: 22, maxWidth: 520, height: 34, padding: "0 16px", fontSize: 17 }}>
+        yonetim.klinara.app/{path}
+      </BrowserBar>
 
       <div style={{ flex: 1, display: "flex", minHeight: 0 }}>
         <div
@@ -332,6 +302,95 @@ export function BrowserFrame({
           <div style={{ flex: 1, position: "relative", padding: 28, minHeight: 0 }}>{children}</div>
         </div>
       </div>
+    </div>
+  );
+}
+
+/** Tarayıcı üst çubuğu: üç nokta ve adres alanı. Adres alanının içeriği çağırandan gelir. */
+function BrowserBar({
+  height,
+  fieldStyle,
+  children,
+}: {
+  height: number;
+  fieldStyle?: CSSProperties;
+  children: ReactNode;
+}) {
+  return (
+    <div
+      style={{
+        height,
+        flexShrink: 0,
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        padding: "0 22px",
+        backgroundColor: color.fill,
+        borderBottom: `1px solid ${color.line}`,
+      }}
+    >
+      {["#E8746A", "#E9B949", "#7DBA6A"].map((c) => (
+        <span key={c} style={{ width: 14, height: 14, borderRadius: 99, backgroundColor: c, opacity: 0.85 }} />
+      ))}
+      <div
+        style={{
+          flex: 1,
+          borderRadius: 10,
+          backgroundColor: color.raised,
+          display: "flex",
+          alignItems: "center",
+          color: color.muted,
+          ...fieldStyle,
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Kliniğin web sitesi (online randevu sayfası) için tarayıcı penceresi: yalnız
+ * adres çubuğu, içerik çağırandan. Adres alanı ortada ve büyük; alan adı okunsun.
+ */
+export function WebsiteFrame({
+  width,
+  height,
+  style,
+  url,
+  children,
+}: {
+  width: number;
+  height: number;
+  style?: CSSProperties;
+  /** Adres alanının içeriği (alan adı, yol, imleç). */
+  url: ReactNode;
+  children: ReactNode;
+}) {
+  return (
+    <div
+      style={{
+        position: "absolute",
+        width,
+        height,
+        borderRadius: 26,
+        overflow: "hidden",
+        backgroundColor: color.surface,
+        boxShadow: shadow.device,
+        display: "flex",
+        flexDirection: "column",
+        fontFamily: sans,
+        color: color.ink,
+        ...style,
+      }}
+    >
+      <BrowserBar
+        height={64}
+        fieldStyle={{ margin: "0 64px 0 40px", height: 42, justifyContent: "center", gap: 10, fontSize: 23 }}
+      >
+        {url}
+      </BrowserBar>
+      <div style={{ flex: 1, position: "relative", minHeight: 0 }}>{children}</div>
     </div>
   );
 }

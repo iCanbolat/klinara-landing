@@ -2,11 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
 import { Check } from "lucide-react";
 
+import { BookingDevices } from "~/components/browser";
 import { Phone, PhoneFrame, ScreenImage } from "~/components/phone";
 import type { ScreenName } from "~/config/screens";
 import { cn } from "~/lib/cn";
 
-type Chapter = { screen: ScreenName; title: string; body: string; points: string[] };
+/** `visual: "booking"`: telefon yerine tarayıcı + telefon (BookingDevices). */
+type Chapter = { screen: ScreenName; visual?: "booking"; title: string; body: string; points: string[] };
 
 const chapters: Chapter[] = [
   {
@@ -23,9 +25,10 @@ const chapters: Chapter[] = [
   },
   {
     screen: "online-booking",
-    title: "Boş saati sistem bulur",
-    body: "Hasta online randevu sayfanızda hizmeti seçtiğinde çalışma saatleri, molalar ve dolu randevular düşülür; yalnız uygun saatler listelenir.",
-    points: ["Hazırlık ve temizlik payı", "Çoklu hizmet sırası", "Sonraki boş gün önerisi"],
+    visual: "booking",
+    title: "Kendi alan adınızda, hastanın dilinde",
+    body: "Online randevu sayfanız randevu.kliniginiz.com gibi kendi alan adınızda açılır; hasta sayfayı Türkçe, İngilizce, Almanca ya da Rusça görür. Hizmeti seçtiğinde çalışma saatleri, molalar ve dolu randevular düşülür, yalnız uygun saatler listelenir.",
+    points: ["Kendi alan adınız, HTTPS otomatik", "Hizmet adları ve sayfa metinleri panelden çevrilir", "Yalnız boş saatler, hazırlık payıyla"],
   },
   {
     screen: "treatment-plan",
@@ -72,9 +75,16 @@ function ChapterBlock({ chapter, active, onActive }: { chapter: Chapter; active:
         </ul>
       </div>
       {/* Mobil ve tablet: her bölümün kendi telefonu. */}
-      <div className="mx-auto mt-10 w-[250px] sm:w-[280px] lg:hidden">
-        <Phone name={chapter.screen} sizes="280px" />
-      </div>
+      {chapter.visual === "booking" ? (
+        <BookingDevices
+          className="mx-auto mt-10 w-full max-w-[440px] lg:hidden"
+          sizes={{ browser: "(min-width: 480px) 414px, 92vw", phone: "(min-width: 480px) 200px, 44vw" }}
+        />
+      ) : (
+        <div className="mx-auto mt-10 w-[250px] sm:w-[280px] lg:hidden">
+          <Phone name={chapter.screen} sizes="280px" />
+        </div>
+      )}
     </div>
   );
 }
@@ -82,6 +92,7 @@ function ChapterBlock({ chapter, active, onActive }: { chapter: Chapter; active:
 export function FeatureStory() {
   const [active, setActive] = useState(0);
   const handlers = useRef(chapters.map((_, i) => () => setActive(i)));
+  const bookingActive = chapters[active].visual === "booking";
 
   return (
     <section id="ozellikler" className="border-t border-line">
@@ -103,24 +114,47 @@ export function FeatureStory() {
             ))}
           </div>
 
-          {/* Masaüstü: yapışkan telefon, aktif bölüme göre ekran değişir. */}
+          {/* Masaüstü: yapışkan telefon, aktif bölüme göre ekran değişir. Online randevu
+              bölümünde telefon çerçevesi söner, yerine tarayıcı + telefon gelir. */}
           <div className="relative hidden lg:block">
             <div className="sticky top-[max(5.5rem,calc(50dvh-335px))] py-6">
               <div className="absolute inset-x-0 bottom-0 top-24 rounded-card bg-sage-soft" aria-hidden />
-              <PhoneFrame className="relative mx-auto w-[300px]">
-                {chapters.map((chapter, i) => (
-                  <motion.div
-                    key={chapter.screen}
-                    initial={false}
-                    animate={{ opacity: active === i ? 1 : 0, y: active === i ? 0 : 10 }}
-                    transition={{ duration: 0.45, ease: [0.2, 0.8, 0.2, 1] }}
-                    className={cn(i === 0 ? "relative" : "absolute inset-0")}
-                    aria-hidden={active !== i}
-                  >
-                    <ScreenImage name={chapter.screen} sizes="300px" />
-                  </motion.div>
-                ))}
-              </PhoneFrame>
+              <div className="relative">
+                <motion.div
+                  initial={false}
+                  animate={{ opacity: bookingActive ? 0 : 1, y: bookingActive ? 10 : 0 }}
+                  transition={{ duration: 0.45, ease: [0.2, 0.8, 0.2, 1] }}
+                >
+                  <PhoneFrame className="mx-auto w-[300px]">
+                    {chapters.map((chapter, i) =>
+                      chapter.visual ? null : (
+                        <motion.div
+                          key={chapter.screen}
+                          initial={false}
+                          animate={{ opacity: active === i ? 1 : 0, y: active === i ? 0 : 10 }}
+                          transition={{ duration: 0.45, ease: [0.2, 0.8, 0.2, 1] }}
+                          className={cn(i === 0 ? "relative" : "absolute inset-0")}
+                          aria-hidden={active !== i}
+                        >
+                          <ScreenImage name={chapter.screen} sizes="300px" />
+                        </motion.div>
+                      ),
+                    )}
+                  </PhoneFrame>
+                </motion.div>
+                <motion.div
+                  initial={false}
+                  animate={{ opacity: bookingActive ? 1 : 0, y: bookingActive ? 0 : 10 }}
+                  transition={{ duration: 0.45, ease: [0.2, 0.8, 0.2, 1] }}
+                  className={cn("absolute inset-y-0 -right-2 left-0 flex items-center xl:-left-16", !bookingActive && "pointer-events-none")}
+                  aria-hidden={!bookingActive}
+                >
+                  <BookingDevices
+                    className="w-full"
+                    sizes={{ browser: "(min-width: 1280px) 450px, 380px", phone: "(min-width: 1280px) 220px, 185px" }}
+                  />
+                </motion.div>
+              </div>
               <ol className="relative mt-6 flex justify-center gap-2" aria-label="Ekranlar">
                 {chapters.map((chapter, i) => (
                   <li
