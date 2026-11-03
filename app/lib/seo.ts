@@ -12,7 +12,16 @@ type PageMeta = {
   extra?: MetaDescriptor[];
 };
 
-export const absoluteUrl = (path: string) => new URL(path, site.url).toString();
+/**
+ * Mutlak adres. Sayfa yolları eğik çizgiyle biter: Cloudflare Pages `/blog`'u
+ * `/blog/`'a 308 ile yönlendiriyor; canonical ve sitemap yönlendirmeye işaret
+ * etmesin. Uzantılı dosyalar (`/og.png`, `/rss.xml`) olduğu gibi kalır.
+ */
+export const absoluteUrl = (path: string) => {
+  const url = new URL(path, site.url);
+  if (!url.pathname.endsWith("/") && !/\.[a-z0-9]+$/i.test(url.pathname)) url.pathname += "/";
+  return url.toString();
+};
 
 /** Sayfa başlığı, açıklama, canonical, Open Graph ve Twitter etiketleri. */
 export function pageMeta({ title, description, path, image = "/og.png", type = "website", jsonLd = [], extra = [] }: PageMeta): MetaDescriptor[] {
