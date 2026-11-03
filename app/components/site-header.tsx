@@ -3,10 +3,10 @@ import { Link, useLocation } from "react-router";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Menu, X } from "lucide-react";
 
-import { ButtonLink } from "~/components/button";
+import { DemoRequestButton } from "~/components/demo-request";
 import { Logo } from "~/components/logo";
 import { ThemeToggle } from "~/components/theme-toggle";
-import { demoMailto, nav, site } from "~/config/site";
+import { nav, site } from "~/config/site";
 import { cn } from "~/lib/cn";
 import { LAYER } from "~/lib/layers";
 
@@ -58,9 +58,9 @@ export function SiteHeader() {
           >
             Giriş
           </a>
-          <ButtonLink href={demoMailto()} size="sm" className="mx-1.5 hidden sm:inline-flex">
+          <DemoRequestButton size="sm" className="mx-1.5 hidden sm:inline-flex">
             Demo talep et
-          </ButtonLink>
+          </DemoRequestButton>
           <ThemeToggle />
           <button
             type="button"
@@ -99,9 +99,9 @@ export function SiteHeader() {
               <a href={site.adminUrl} className="rounded-control px-2 py-3 text-lg font-medium text-muted hover:bg-fill">
                 Giriş
               </a>
-              <ButtonLink href={demoMailto()} size="lg" className="mt-3 w-full">
+              <DemoRequestButton size="lg" className="mt-3 w-full" onClick={() => setOpen(false)}>
                 Demo talep et
-              </ButtonLink>
+              </DemoRequestButton>
             </nav>
           </motion.div>
         )}

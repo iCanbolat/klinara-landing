@@ -2,9 +2,9 @@ import { useState } from "react";
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import { Check } from "lucide-react";
 
-import { ButtonLink } from "~/components/button";
+import { DemoRequestButton } from "~/components/demo-request";
 import { formatTL, includedFeatures, plans, yearlyMonthlyEquivalent, yearlyTotal, type Plan } from "~/config/pricing";
-import { demoMailto, site } from "~/config/site";
+import { site } from "~/config/site";
 import { cn } from "~/lib/cn";
 
 type Billing = "monthly" | "yearly";
@@ -113,13 +113,13 @@ function PlanCard({ plan, billing }: { plan: Plan; billing: Billing }) {
         </li>
       </ul>
 
-      <ButtonLink
-        href={demoMailto(`${plan.name} planı`)}
+      <DemoRequestButton
+        label={`${plan.name} planı`}
         variant={plan.featured ? "primary" : "secondary"}
         className="mt-8 w-full"
       >
         Demo talep et
-      </ButtonLink>
+      </DemoRequestButton>
     </article>
   );
 }

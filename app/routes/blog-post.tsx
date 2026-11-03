@@ -2,10 +2,9 @@ import { data, Link } from "react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import type { Route } from "./+types/blog-post";
-import { ButtonLink } from "~/components/button";
+import { DemoRequestButton } from "~/components/demo-request";
 import { PostCardRow, PostMetaLine } from "~/components/post-card";
 import { PostCover } from "~/components/post-cover";
-import { demoMailto } from "~/config/site";
 import { getAllPosts } from "~/lib/blog.server";
 import { absoluteUrl, organizationLd, pageMeta } from "~/lib/seo";
 
@@ -101,7 +100,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
           sistemde toplar.
         </p>
         <div className="mt-6 flex flex-wrap items-center gap-4">
-          <ButtonLink href={demoMailto(post.title)}>Demo talep et</ButtonLink>
+          <DemoRequestButton source={`Blog: ${post.title}`}>Demo talep et</DemoRequestButton>
           <Link to="/#ozellikler" className="inline-flex items-center gap-2 font-semibold text-accent hover:underline hover:underline-offset-4">
             Özellikleri incele
             <ArrowRight className="size-4" strokeWidth={2} aria-hidden />

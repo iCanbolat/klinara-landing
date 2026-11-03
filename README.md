@@ -105,6 +105,7 @@ randevu yolları ise monorepo'daki web-booking uygulamasına (VPS) aittir; onlar
 |---|---|
 | `/`, `/blog/*`, `/sitemap.xml`, `/rss.xml`, varlıklar | Pages (statik, `build/client`) |
 | `/randevu`, `/r/*`, `/api/*`, `/_next/*`, `/preview.frame` | Pages Function → `ORIGIN_URL` (VPS, web-booking) |
+| `/demo-talebi` (POST) | Pages Function `functions/demo-talebi.ts` → Resend → `DEMO_REQUEST_TO` |
 
 Function'ın hangi yollarda çalışacağını `public/_routes.json` belirler; diğer istekler
 fonksiyonu hiç tetiklemez (ücretsiz plandaki günlük Function kotası yalnız randevu
@@ -120,6 +121,13 @@ trafiğine harcanır). Uygulamaya bu yollarla çakışan bir rota eklemeyin.
    - `ORIGIN_URL` = `https://origin.klinara.app`
    - `ORIGIN_SHARED_SECRET` = **Secret** olarak; VPS'teki Caddy'nin
      `ORIGIN_SHARED_SECRET` değeriyle aynı (`openssl rand -hex 32`).
+   - `RESEND_API_KEY` = **Secret** olarak; "Demo talep et" formu bununla e-posta
+     gönderir. Resend'de yalnız `klinara.app` alanına *Sending access* izinli ayrı
+     bir anahtar açın (VPS'teki anahtarı paylaşmayın). Tanımsızsa form 503 döner.
+   - `DEMO_REQUEST_TO` (isteğe bağlı) = talebin gideceği adres; varsayılan
+     `iletisim@klinara.app`. Bu adres gerçekten bir gelen kutusuna ulaşmalı
+     (ör. Cloudflare *Email Routing* ile kişisel e-postaya yönlendirme).
+   - `MAIL_FROM` (isteğe bağlı) = gönderen; varsayılan `Klinara <bildirim@klinara.app>`.
 4. *Custom domains* → `klinara.app` ve `www.klinara.app` ekleyin. Alan adı aynı
    Cloudflare hesabındaysa DNS kayıtları otomatik oluşur (turuncu bulut).
 5. `www` → kök yönlendirmesi: *Rules → Redirect Rules* →
@@ -133,6 +141,8 @@ VPS tarafı (origin.klinara.app, Caddy, sır doğrulaması) monorepo'da
 ```bash
 curl -sI https://klinara.app | head -1                                  # 200, Pages
 curl -sI 'https://klinara.app/randevu?klinik=olmayan' | head -1         # 404, web-booking'den
+curl -s -X POST https://klinara.app/demo-talebi -H 'Origin: https://klinara.app' \
+  -H 'Content-Type: application/json' -d '{}'                           # {"error":"invalid"}, Function'dan
 curl -s -o /dev/null -w '%{http_code}\n' https://origin.klinara.app/randevu   # 403 (sırsız)
 ```
 

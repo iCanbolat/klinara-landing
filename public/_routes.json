@@ -7,7 +7,8 @@
     "/api/*",
     "/_next/*",
     "/preview.frame",
-    "/preview.frame/*"
+    "/preview.frame/*",
+    "/demo-talebi"
   ],
   "exclude": []
 }

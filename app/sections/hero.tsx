@@ -1,8 +1,8 @@
 import { ArrowRight } from "lucide-react";
 
 import { ButtonLink } from "~/components/button";
+import { DemoRequestButton } from "~/components/demo-request";
 import { HeroVideo } from "~/components/hero-video";
-import { demoMailto } from "~/config/site";
 
 export function Hero() {
   return (
@@ -24,10 +24,10 @@ export function Hero() {
             Android'de.
           </p>
           <div className="animate-rise mt-9 flex flex-wrap gap-3" style={{ "--i": 2 } as React.CSSProperties}>
-            <ButtonLink href={demoMailto()} size="lg">
+            <DemoRequestButton size="lg">
               Demo talep et
               <ArrowRight className="size-4" strokeWidth={2} aria-hidden />
-            </ButtonLink>
+            </DemoRequestButton>
             <ButtonLink to="/#fiyatlar" size="lg" variant="secondary">
               Fiyatları gör
             </ButtonLink>

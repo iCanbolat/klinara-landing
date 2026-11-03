@@ -9,6 +9,7 @@ import "@fontsource/source-serif-4/600-italic.css";
 import "./app.css";
 
 import type { Route } from "./+types/root";
+import { DemoRequestProvider } from "~/components/demo-request";
 import { SiteFooter } from "~/components/site-footer";
 import { SiteHeader } from "~/components/site-header";
 import { NotFoundContent } from "~/components/not-found-content";
@@ -49,9 +50,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <MotionConfig reducedMotion="user">
-      <SiteHeader />
-      <Outlet />
-      <SiteFooter />
+      <DemoRequestProvider>
+        <SiteHeader />
+        <Outlet />
+        <SiteFooter />
+      </DemoRequestProvider>
     </MotionConfig>
   );
 }
@@ -60,6 +63,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   const notFound = isRouteErrorResponse(error) && error.status === 404;
   return (
     <MotionConfig reducedMotion="user">
+      <DemoRequestProvider>
       <SiteHeader />
       {notFound ? (
         <NotFoundContent />
@@ -73,6 +77,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
         </main>
       )}
       <SiteFooter />
+      </DemoRequestProvider>
     </MotionConfig>
   );
 }

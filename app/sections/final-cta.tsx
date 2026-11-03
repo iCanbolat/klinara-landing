@@ -1,7 +1,6 @@
 import { ArrowRight } from "lucide-react";
 
-import { ButtonLink } from "~/components/button";
-import { demoMailto } from "~/config/site";
+import { DemoRequestButton } from "~/components/demo-request";
 
 export function FinalCta() {
   return (
@@ -28,10 +27,10 @@ export function FinalCta() {
           <p className="mt-5 text-lg text-[#F2EFEA]/85">
             Kısa bir görüşmede kendi hizmetleriniz ve ekibinizle örnek bir gün kuralım.
           </p>
-          <ButtonLink href={demoMailto()} size="lg" variant="inverse" className="mt-9">
+          <DemoRequestButton size="lg" variant="inverse" className="mt-9">
             Demo talep et
             <ArrowRight className="size-4" strokeWidth={2} aria-hidden />
-          </ButtonLink>
+          </DemoRequestButton>
         </div>
       </div>
     </section>
