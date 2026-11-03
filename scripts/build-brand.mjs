@@ -71,6 +71,21 @@ async function square(input, { size, pad, ground = CLEAR }) {
     .toBuffer();
 }
 
+/** Tek PNG'yi saran `.ico` (Vista'dan beri ICO içinde PNG geçerli); `/favicon.ico` 404 vermesin. */
+async function ico(png) {
+  const { width, height } = await sharp(png).metadata();
+  const header = Buffer.alloc(22);
+  header.writeUInt16LE(1, 2); // tür: simge
+  header.writeUInt16LE(1, 4); // görüntü sayısı
+  header.writeUInt8(width >= 256 ? 0 : width, 6);
+  header.writeUInt8(height >= 256 ? 0 : height, 7);
+  header.writeUInt16LE(1, 10); // renk düzlemi
+  header.writeUInt16LE(32, 12); // piksel başına bit
+  header.writeUInt32LE(png.length, 14);
+  header.writeUInt32LE(22, 18); // verinin başladığı yer
+  return Buffer.concat([header, png]);
+}
+
 /** 1200×630 paylaşım görseli: solda logo, sağda gerçek dashboard ekranı. */
 async function ogImage(logo) {
   const W = 1200;
@@ -103,6 +118,10 @@ const TARGETS = [
   ['public/brand/mark-light.png', () => square(markLight, { size: 360, pad: 0.02 })],
   ['public/brand/mark-dark.png', () => square(markDark, { size: 360, pad: 0.02 })],
   ['public/favicon.png', () => square(markLight, { size: 64, pad: 0.04 })],
+  // Google arama sonucu simgesi: kare ve 48'in katı olmalı; sonuçta daire içine
+  // kırpıldığı için zeminli ve kenar boşluklu.
+  ['public/favicon-192.png', () => square(markLight, { size: 192, pad: 0.16, ground: bg('#FAF8F5') })],
+  ['public/favicon.ico', async () => ico(await square(markLight, { size: 48, pad: 0.04 }))],
   ['public/apple-touch-icon.png', () => square(markLight, { size: 180, pad: 0.16, ground: bg('#FAF8F5') })],
   ['public/og.png', () => ogImage(logoLight)],
 ];

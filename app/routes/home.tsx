@@ -25,6 +25,8 @@ export function meta(_: Route.MetaArgs) {
     path: "/",
     jsonLd: [
       organizationLd,
+      // Arama sonucunda alan adı yerine "Klinara" site adı gösterilsin.
+      { "@context": "https://schema.org", "@type": "WebSite", name: site.name, url: absoluteUrl("/") },
       {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",

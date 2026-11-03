@@ -15,7 +15,8 @@ import { SiteHeader } from "~/components/site-header";
 import { NotFoundContent } from "~/components/not-found-content";
 
 export const links: Route.LinksFunction = () => [
-  { rel: "icon", type: "image/png", href: "/favicon.png" },
+  { rel: "icon", type: "image/png", sizes: "192x192", href: "/favicon-192.png" },
+  { rel: "icon", type: "image/png", sizes: "64x64", href: "/favicon.png" },
   { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
   { rel: "alternate", type: "application/rss+xml", title: "Klinara Blog", href: "/rss.xml" },
 ];
