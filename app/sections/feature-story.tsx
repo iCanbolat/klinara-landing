@@ -4,11 +4,15 @@ import { Check } from "lucide-react";
 
 import { BookingDevices } from "~/components/browser";
 import { Phone, PhoneFrame, ScreenImage } from "~/components/phone";
+import { WhatsAppChatScreen } from "~/components/whatsapp-chat";
 import type { ScreenName } from "~/config/screens";
 import { cn } from "~/lib/cn";
 
-/** `visual: "booking"`: telefon yerine tarayıcı + telefon (BookingDevices). */
-type Chapter = { screen: ScreenName; visual?: "booking"; title: string; body: string; points: string[] };
+/**
+ * `visual: "booking"`: telefon yerine tarayıcı + telefon (BookingDevices).
+ * `visual: "whatsapp"`: ekran görüntüsü yerine hastanın WhatsApp'ı (HTML mock).
+ */
+type Chapter = { screen: ScreenName; visual?: "booking" | "whatsapp"; title: string; body: string; points: string[] };
 
 const chapters: Chapter[] = [
   {
@@ -38,6 +42,7 @@ const chapters: Chapter[] = [
   },
   {
     screen: "whatsapp-thread",
+    visual: "whatsapp",
     title: "WhatsApp konuşmaları uygulamada",
     body: "Danışan mesajları ekibin ortak gelen kutusuna düşer. Otomatik hatırlatmalar ve yanıtlarınız aynı konuşmada kalır.",
     points: ["Kendi işletme numaranızdan", "Okunmamış ve kapalı ayrımı", "Konuşmadan randevu yönetimi"],
@@ -80,6 +85,10 @@ function ChapterBlock({ chapter, active, onActive }: { chapter: Chapter; active:
           className="mx-auto mt-10 w-full max-w-[440px] lg:hidden"
           sizes={{ browser: "(min-width: 480px) 414px, 92vw", phone: "(min-width: 480px) 200px, 44vw" }}
         />
+      ) : chapter.visual === "whatsapp" ? (
+        <PhoneFrame className="mx-auto mt-10 w-[250px] sm:w-[280px] lg:hidden">
+          <WhatsAppChatScreen />
+        </PhoneFrame>
       ) : (
         <div className="mx-auto mt-10 w-[250px] sm:w-[280px] lg:hidden">
           <Phone name={chapter.screen} sizes="280px" />
@@ -127,7 +136,7 @@ export function FeatureStory() {
                 >
                   <PhoneFrame className="mx-auto w-[300px]">
                     {chapters.map((chapter, i) =>
-                      chapter.visual ? null : (
+                      chapter.visual === "booking" ? null : (
                         <motion.div
                           key={chapter.screen}
                           initial={false}
@@ -136,7 +145,11 @@ export function FeatureStory() {
                           className={cn(i === 0 ? "relative" : "absolute inset-0")}
                           aria-hidden={active !== i}
                         >
-                          <ScreenImage name={chapter.screen} sizes="300px" />
+                          {chapter.visual === "whatsapp" ? (
+                            <WhatsAppChatScreen />
+                          ) : (
+                            <ScreenImage name={chapter.screen} sizes="300px" />
+                          )}
                         </motion.div>
                       ),
                     )}
