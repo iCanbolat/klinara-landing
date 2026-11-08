@@ -19,7 +19,7 @@ export const screens = {
   customer: "Danışan kartında randevu, işlem notu ve paket zaman çizelgesi",
   package: "Seans paketi detayı: kalan hak, geçerlilik ve kalem bazında kullanım",
   "treatment-plan": "İmplant tedavi planı: tamamlanan aşamalar, randevusu olmayan sıradaki aşama, planla ve WhatsApp ile hatırlat",
-  "whatsapp-thread": "WhatsApp konuşması: danışan mesajı ve otomatik randevu hatırlatması",
+  "whatsapp-thread": "WhatsApp konuşması: otomatik hatırlatma, danışanın saat değişikliği isteği ve personelin uygulamadan yazdığı yanıt",
   "message-log": "Mesaj günlüğü: ulaşan, okunan ve gönderilemeyen bildirimler",
   "reminder-settings": "Şubeye özel hatırlatma saatleri ayarı",
   "report-occupancy": "Doluluk raporu, uygulayıcılara göre grafik",
