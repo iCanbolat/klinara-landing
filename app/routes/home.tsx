@@ -1,6 +1,5 @@
 import type { Route } from "./+types/home";
 
-import { plans } from "~/config/pricing";
 import { site } from "~/config/site";
 import { getPostMetas } from "~/lib/blog.server";
 import { absoluteUrl, organizationLd, pageMeta } from "~/lib/seo";
@@ -36,19 +35,6 @@ export function meta(_: Route.MetaArgs) {
         url: site.url,
         image: absoluteUrl("/og.png"),
         description: site.description,
-        offers: plans.map((plan) => ({
-          "@type": "Offer",
-          name: plan.name,
-          price: plan.monthly,
-          priceCurrency: "TRY",
-          priceSpecification: {
-            "@type": "UnitPriceSpecification",
-            price: plan.monthly,
-            priceCurrency: "TRY",
-            unitCode: "MON",
-            valueAddedTaxIncluded: false,
-          },
-        })),
       },
       {
         "@context": "https://schema.org",

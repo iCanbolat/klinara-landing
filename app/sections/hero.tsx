@@ -29,7 +29,7 @@ export function Hero() {
               <ArrowRight className="size-4" strokeWidth={2} aria-hidden />
             </DemoRequestButton>
             <ButtonLink to="/#fiyatlar" size="lg" variant="secondary">
-              Fiyatları gör
+              Planları gör
             </ButtonLink>
           </div>
         </div>
