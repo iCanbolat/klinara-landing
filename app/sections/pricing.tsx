@@ -5,6 +5,8 @@ import { includedFeatures, plans, type Plan } from "~/config/pricing";
 import { site } from "~/config/site";
 import { cn } from "~/lib/cn";
 
+const tl = new Intl.NumberFormat("tr-TR");
+
 function PlanCard({ plan }: { plan: Plan }) {
   return (
     <article
@@ -24,13 +26,28 @@ function PlanCard({ plan }: { plan: Plan }) {
       <ul className="mt-6 grid gap-2.5 border-t border-line pt-6 text-[15px]">
         <li className="flex items-center gap-3">
           <Check className="size-4 shrink-0 text-accent" strokeWidth={2.25} aria-hidden />
-          {plan.branches === 1 ? "1 şube" : `${plan.branches} şubeye kadar`}
+          {plan.branches === null
+            ? "İhtiyacınız kadar şube"
+            : plan.branches === 1
+              ? "1 şube"
+              : `${plan.branches} şubeye kadar`}
         </li>
         <li className="flex items-start gap-3">
           <Check className="mt-1 size-4 shrink-0 text-accent" strokeWidth={2.25} aria-hidden />
           <span>
-            {plan.practitioners} hekim ve uygulayıcıya kadar
+            {plan.practitioners === null
+              ? "Ekibiniz kadar hekim ve uygulayıcı"
+              : `${plan.practitioners} hekim ve uygulayıcıya kadar`}
             <span className="block text-[13px] text-muted">Resepsiyon ve yönetici hesapları sayılmaz</span>
+          </span>
+        </li>
+        <li className="flex items-start gap-3">
+          <Check className="mt-1 size-4 shrink-0 text-accent" strokeWidth={2.25} aria-hidden />
+          <span>
+            {plan.assistantConversations === null
+              ? "WhatsApp asistanı, ihtiyaca göre kota"
+              : `Ayda ${tl.format(plan.assistantConversations)} WhatsApp asistanı sohbeti`}
+            <span className="block text-[13px] text-muted">Kota dolunca asistan taslak hazırlamaya devam eder</span>
           </span>
         </li>
         <li className="flex items-center gap-3">
@@ -44,7 +61,7 @@ function PlanCard({ plan }: { plan: Plan }) {
         variant={plan.featured ? "primary" : "secondary"}
         className="mt-8 w-full"
       >
-        Demo talep et
+        {plan.custom ? "Teklif iste" : "Demo talep et"}
       </DemoRequestButton>
     </article>
   );
@@ -89,7 +106,7 @@ export function Pricing() {
           ))}
         </div>
         <p className="mt-8 text-[15px] text-muted">
-          İkiden fazla şubeniz ya da daha büyük bir ekibiniz varsa size özel plan için yazın:{" "}
+          Birden fazla şubeniz varsa Çok Şubeli plan için ihtiyacınıza göre teklif hazırlıyoruz:{" "}
           <a href={`mailto:${site.contactEmail}`} className="font-medium text-accent underline underline-offset-4">
             {site.contactEmail}
           </a>
